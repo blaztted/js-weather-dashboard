@@ -1,0 +1,25 @@
+@import url("https://fonts.googleapis.com/css2?family=Inter:wght@300&family=Montserrat+Alternates:wght@300&display=swap");
+/* font-family: "Inter", sans-serif;
+  font-family: "Montserrat Alternates", sans-serif;*/
+
+:root {
+  --dark-blue: #155263;
+  --light-blue: #25aacf;
+  --dark-orange: #ff6f3c;
+  --orange: #ff9a3c;
+  --yellow: #ffc93c;
+  --white: #ffffff;
+}
+
+header {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: var(--dark-blue);
+}
+
+header h1 {
+  color: var(--white);
+  font-family: "Inter", sans-serif;
+  font-family: "Montserrat Alternates", sans-serif;
+}
