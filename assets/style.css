@@ -18,8 +18,13 @@ body {
 }
 
 .header {
-  background-color: var(--dark-blue) !important;
+  background-color: var(--light-blue) !important;
 }
 
-);
+button {
+  background-color: var(--light-blue) !important;
+}
+
+.footer {
+  background-color: var(--dark-blue) !important;
 }
