@@ -9,17 +9,17 @@
   --orange: #ff9a3c;
   --yellow: #ffc93c;
   --white: #ffffff;
-}
 
-header {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  background-color: var(--dark-blue);
-}
-
-header h1 {
-  color: var(--white);
   font-family: "Inter", sans-serif;
+}
+
+body {
   font-family: "Montserrat Alternates", sans-serif;
+}
+
+.header {
+  background-color: var(--dark-blue) !important;
+}
+
+);
 }

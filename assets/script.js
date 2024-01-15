@@ -7,10 +7,14 @@ const lon = -9.1954432;
 
 const apiUrl = `https://api.openweathermap.org/data/2.5/forecast?lat=${lat}&lon=${lon}&appid=${API_KEY}`;
 
+const now = dayjs();
+const curDate = now.format("dddd MMM. D, YYYY");
+
 fetch(apiUrl)
   .then((response) => {
     return response.json();
   })
   .then((data) => {
+    $("#today").text(` ${curDate}`);
     console.log(data);
   });
