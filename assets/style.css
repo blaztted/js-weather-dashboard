@@ -14,10 +14,11 @@
 }
 
 body {
-  font-family: "Montserrat Alternates", sans-serif;
+  font-family: "Inter", sans-serif !important;
+  font-family: "Montserrat Alternates", sans-serif !important;
 }
 
-.header {
+.navbar {
   background-color: var(--light-blue) !important;
 }
 
@@ -27,4 +28,8 @@ button {
 
 .footer {
   background-color: var(--dark-blue) !important;
+}
+
+.card {
+  background-color: var(--light-blue) !important;
 }

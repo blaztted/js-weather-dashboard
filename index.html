@@ -17,9 +17,10 @@
     />
 
     <!-- Google Fonts -->
-    <link rel="preconnect" href="https://fonts.gstatic.com" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link
-      href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@300;400;700&display=swap"
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@300&family=Montserrat+Alternates:wght@300&family=Montserrat:wght@300&display=swap"
       rel="stylesheet"
     />
 
@@ -31,229 +32,66 @@
       crossorigin="anonymous"
     />
 
-    <!-- Custom Stylesheet -->
-    <link rel="stylesheet" href="style.css" />
+    <link rel="stylesheet" href="./assets/style.css" />
   </head>
+
   <body>
-    <!-- Header -->
-    <header class="bg-info p-4 mb-2 text-center">
-      <h1 class="font-weight-bold text-white">
-        <i class="fas fa-cloud-sun mr-1"></i>
-        Weather Dashboard
-      </h1>
-      <p id="today" class="h4 text-white"></p>
-    </header>
+    <div class="container-fluid">
+      <div class="row navbar text-white">
+        <div class="col-12 text-center">
+          <h1>Weather Dashboard</h1>
+        </div>
+      </div>
 
-    <!-- Content Container -->
-    <div class="container">
       <div class="row">
-        <!-- Sidebar: Search + Search History -->
-        <aside class="col col-lg-2 px-2 my-3 rounded">
-          <!-- Search Input -->
-          <form id="search-form" class="form-group mt-1 pt-1">
-            <input
-              id="search"
-              class="form-control"
-              type="text"
-              placeholder="Enter City"
-              aria-label="Search"
-            />
-            <button
-              id="search-btn"
-              class="btn btn-block btn-info mt-3"
-              type="submit"
-            >
-              Search
-              <i class="fas fa-search ml-1"></i>
-            </button>
-          </form>
-
-          <!-- Previous Searches Button (only visible at smaller breakpoints) -->
-          <button
-            id="collapse-search-history"
-            class="btn btn-block btn-info"
-            type="button"
-            data-toggle="collapse"
-            data-target="#search-history"
-            aria-expanded="false"
-            aria-controls="collapseExample"
-          >
-            Previous Searches
-          </button>
-
-          <!-- Search History -->
-          <ul id="search-history" class="list-group collapse mt-3">
-            <li
-              id="delete-history"
-              class="list-group-item list-group-item-info font-weight-bold"
-            >
-              <i class="fas fa-trash-alt mr-1"></i>
-              Delete History
-            </li>
-          </ul>
-        </aside>
-
-        <!-- Main Content: Weather Dashboard -->
-        <main class="col px-2 mt-3">
-          <!-- Section: Current Weather Data -->
-          <section class="card">
-            <!-- Current City -->
-            <div
-              class="card-header d-flex align-items-center list-group-item-info"
-            >
-              <p id="city" class="h2 my-0 mr-2"></p>
-              <i id="icon" class=""></i>
+        <div class="col-3 bg-light pb-2 pt-3" id="searchResults">
+          <div class="row">
+            <div class="col-12">
+              <h4>Search for a City:</h4>
             </div>
+          </div>
 
-            <div class="card-body py-0">
-              <!-- Current Conditions -->
-              <div class="row d-flex align-items-center py-3">
-                <div class="col-8 col-md-6 col-lg-4">
-                  <p class="h5 font-weight-bold m-0">Conditions:</p>
-                </div>
-                <div class="col-4 col-md-6 col-lg-8 px-0">
-                  <p id="conditions" class="h5 font-weight-light m-0"></p>
-                </div>
-              </div>
-
-              <!-- Current Temperature -->
-              <div class="row bg-light d-flex align-items-center py-3">
-                <div class="col-8 col-md-6 col-lg-4">
-                  <p class="h5 font-weight-bold m-0">Temperature:</p>
-                </div>
-                <div class="col-4 col-md-6 col-lg-8 px-0">
-                  <p id="temperature" class="h5 font-weight-light m-0"></p>
-                </div>
-              </div>
-
-              <!-- Current Humidity -->
-              <div class="row d-flex align-items-center py-3">
-                <div class="col-8 col-md-6 col-lg-4">
-                  <p class="h5 font-weight-bold m-0">Humidity:</p>
-                </div>
-                <div class="col-4 col-md-6 col-lg-8 px-0">
-                  <p id="humidity" class="h5 font-weight-light m-0"></p>
-                </div>
-              </div>
-
-              <!-- Current Wind Speed -->
-              <div class="row bg-light d-flex align-items-center py-3">
-                <div class="col-8 col-md-6 col-lg-4">
-                  <p class="h5 font-weight-bold m-0">Wind Speed:</p>
-                </div>
-                <div class="col-4 col-md-6 col-lg-8 px-0">
-                  <p id="wind-speed" class="h5 font-weight-light m-0"></p>
-                </div>
+          <div class="row">
+            <div class="col-12">
+              <div class="input-group">
+                <input
+                  class="form-control"
+                  type="text"
+                  id="enterCity"
+                  placeholder="London (for example)"
+                /><button type="button" id="searchBtn" class="btn btn-primary">
+                  <i class="fas fa-search"></i>
+                </button>
               </div>
             </div>
-          </section>
+          </div>
 
-          <!-- Section: 5-Day Forecast -->
-          <section class="card my-3">
-            <div
-              class="card-header d-flex align-items-center list-group-item-info py-3"
-            >
-              <p class="h2 my-0">5-Day Forecast</p>
+          <div class="row mt-3">
+            <div class="col-12">
+              <ul id="searchHistory" class="list-group">
+                <!-- append li here li class="list-group-item"-->
+              </ul>
             </div>
+          </div>
+        </div>
 
-            <div class="card-body py-0">
-              <!-- Day 1 -->
-              <div class="row d-flex align-items-center py-3">
-                <div class="col-2 d-flex justify-content-center">
-                  <i id="day-1-icon" class=""></i>
-                </div>
-                <div class="col-3 pr-0">
-                  <p id="day-1-date" class="h5 text-info"></p>
-                  <p id="day-1-year" class="h6 font-weight-light m-0"></p>
-                </div>
-                <div class="col-7">
-                  <p id="day-1-conditions" class="h5 text-info"></p>
-                  <p class="h6 font-weight-light m-0">
-                    <i class="fas fa-thermometer-quarter"></i>
-                    <span id="day-1-temp"></span> /
-                    <span id="day-1-humidity"></span>
-                  </p>
-                </div>
-              </div>
-
-              <!-- Day 2 -->
-              <div class="row bg-light d-flex align-items-center py-3">
-                <div class="col-2 d-flex justify-content-center">
-                  <i id="day-2-icon" class=""></i>
-                </div>
-                <div class="col-3 pr-0">
-                  <p id="day-2-date" class="h5 text-info"></p>
-                  <p id="day-2-year" class="h6 font-weight-light m-0"></p>
-                </div>
-                <div class="col-7">
-                  <p id="day-2-conditions" class="h5 text-info"></p>
-                  <p class="h6 font-weight-light m-0">
-                    <i class="fas fa-thermometer-quarter"></i>
-                    <span id="day-2-temp"></span> /
-                    <span id="day-2-humidity"></span>
-                  </p>
-                </div>
-              </div>
-
-              <!-- Day 3 -->
-              <div class="row bg-light d-flex align-items-center py-3">
-                <div class="col-2 d-flex justify-content-center">
-                  <i id="day-3-icon" class=""></i>
-                </div>
-                <div class="col-3 pr-0">
-                  <p id="day-3-date" class="h5 text-info"></p>
-                  <p id="day-3-year" class="h6 font-weight-light m-0"></p>
-                </div>
-                <div class="col-7">
-                  <p id="day-3-conditions" class="h5 text-info"></p>
-                  <p class="h6 font-weight-light m-0">
-                    <i class="fas fa-thermometer-quarter"></i>
-                    <span id="day-3-temp"></span> /
-                    <span id="day-3-humidity"></span>
-                  </p>
-                </div>
-              </div>
-
-              <!-- Day 4 -->
-              <div class="row bg-light d-flex align-items-center py-3">
-                <div class="col-2 d-flex justify-content-center">
-                  <i id="day-4-icon" class=""></i>
-                </div>
-                <div class="col-3 pr-0">
-                  <p id="day-4-date" class="h5 text-info"></p>
-                  <p id="day-4-year" class="h6 font-weight-light m-0"></p>
-                </div>
-                <div class="col-7">
-                  <p id="day-4-conditions" class="h5 text-info"></p>
-                  <p class="h6 font-weight-light m-0">
-                    <i class="fas fa-thermometer-quarter"></i>
-                    <span id="day-4-temp"></span> /
-                    <span id="day-4-humidity"></span>
-                  </p>
-                </div>
-              </div>
-
-              <!-- Day 5 -->
-              <div class="row d-flex align-items-center py-3">
-                <div class="col-2 d-flex justify-content-center">
-                  <i id="day-5-icon" class=""></i>
-                </div>
-                <div class="col-3 pr-0">
-                  <p id="day-5-date" class="h5 text-info"></p>
-                  <p id="day-5-year" class="h6 font-weight-light m-0"></p>
-                </div>
-                <div class="col-7">
-                  <p id="day-5-conditions" class="h5 text-info"></p>
-                  <p class="h6 font-weight-light m-0">
-                    <i class="fas fa-thermometer-quarter"></i>
-                    <span id="day-5-temp"></span> /
-                    <span id="day-5-humidity"></span>
-                  </p>
-                </div>
-              </div>
+        <div id="weatherContent" class="col-9 pb-4 pt-4">
+          <div class="row pb-3 mr-2 ml-2">
+            <div id="cityDetail" class="col-12 border rounded px-3 py-3">
+              <!-- display currentCity here text with p-->
             </div>
-          </section>
-        </main>
+          </div>
+
+          <div class="row pb-2 pt-1">
+            <div class="col-12 ml-2">
+              <h3>5-Day Forecast:</h3>
+            </div>
+          </div>
+
+          <div id="fiveDay" class="row pl-2">
+            <!-- add 5 day forecast info here -->
+          </div>
+        </div>
       </div>
     </div>
 
