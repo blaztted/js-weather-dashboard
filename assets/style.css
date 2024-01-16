@@ -19,11 +19,15 @@ body {
   font-family: "Montserrat Alternates", sans-serif !important;
 }
 
-.navbar {
-  background-color: var(--light-blue) !important;
+h3 {
+  font-weight: bolder !important;
 }
 
 button {
+  background-color: var(--light-blue) !important;
+}
+
+.navbar {
   background-color: var(--light-blue) !important;
 }
 
