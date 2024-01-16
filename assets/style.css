@@ -35,6 +35,11 @@ button {
   background-color: var(--light-blue) !important;
 }
 
+.list-group li:hover {
+  cursor: pointer;
+  background-color: var(--superlight-blue);
+}
+
 #currentCity {
   font-weight: bolder !important;
 }
