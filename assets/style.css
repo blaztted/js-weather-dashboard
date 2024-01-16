@@ -5,6 +5,7 @@
 :root {
   --dark-blue: #155263;
   --light-blue: #25aacf;
+  --superlight-blue: #dff8ff;
   --dark-orange: #ff6f3c;
   --orange: #ff9a3c;
   --yellow: #ffc93c;
@@ -32,4 +33,12 @@ button {
 
 .card {
   background-color: var(--light-blue) !important;
+}
+
+#currentCity {
+  font-weight: bolder !important;
+}
+
+#cityDetail {
+  background-color: var(--superlight-blue);
 }

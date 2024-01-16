@@ -1,41 +1,17 @@
-const API_KEY = "9270b2bf465fdbbaeec9cec7447a23bd";
+// const lat = 38.8075622;
+// const lon = -9.1954432;
+// const city = "London";
 
-const lat = 38.8075622;
-const lon = -9.1954432;
-const city = "London";
+var API_KEY = "9270b2bf465fdbbaeec9cec7447a23bd";
 
-var apiUrl = `https://api.openweathermap.org/data/2.5/weather?q=${city}&units=imperial&appid=${API_KEY}`;
-const futureUrl = `https://api.openweathermap.org/data/2.5/forecast?lat=${lat}&lon=${lon}&appid=${API_KEY}&units=metric`;
+var now = dayjs();
+var curDate = now.format("dddd MMM. D, YYYY");
+var curDateSimplified = now.format("DD/MM/YYYY");
+var searchList = [];
 
-const now = dayjs();
-const curDate = now.format("dddd MMM. D, YYYY");
-const curDateSimplified = now.format("DD/MM/YYYY");
+function currentWeather(city) {
+  var apiUrl = `https://api.openweathermap.org/data/2.5/weather?q=${city}&units=imperial&appid=${API_KEY}`;
 
-fetch(apiUrl)
-  .then((response) => {
-    return response.json();
-  })
-  .then((data) => {
-    // $("#today").text(` ${curDate}`);
-    // $("#city").text(data.city.name);
-    // $("#date").text(curDate);
-    // $("#temperature").text(`${parseInt(data.list[0].main.temp)} ºC`);
-    // $("#humidity").text(`${data.list[0].main.humidity}%`);
-    // $("#wind-speed").text(`${data.list[0].wind.speed} mph`);
-    console.log(data);
-  });
-
-// function displayWeather(data) {
-//   $("#today").text(` ${curDate}`);
-//   $("#city").text(data.city.name);
-//   $("#date").text(curDate);
-//   $("#temperature").text(`${parseInt(data.list[0].main.temp)} ºC`);
-//   $("#humidity").text(`${data.list[0].main.humidity}%`);
-//   $("#wind-speed").text(`${data.list[0].wind.speed} mph`);
-// }
-
-currentWeather();
-function currentWeather() {
   $.ajax({
     url: apiUrl,
     method: "GET",
@@ -59,11 +35,16 @@ function currentWeather() {
 
     $("#cityDetail").append(currentCity);
 
-    futureCondition(lat, lon);
+    var lat = data.coord.lat;
+    var lon = data.coord.lon;
+
+    futureWeather(lat, lon);
   });
 }
+currentWeather();
 
-function futureCondition(lat, lon) {
+function futureWeather(lat, lon) {
+  var futureUrl = `https://api.openweathermap.org/data/2.5/forecast?lat=${lat}&lon=${lon}&appid=${API_KEY}`;
   $.ajax({
     url: futureUrl,
     method: "GET",
@@ -84,9 +65,9 @@ function futureCondition(lat, lon) {
       var iconURL = `<img src="https://openweathermap.org/img/w/${cityInfo.icon}.png" alt="${data.list[i].weather[0].main}" />`;
 
       var futureCard = $(`
-    <div class="pl-3">
-        <div class="card pl-3 pt-3 mb-3 bg-primary text-light" style="width: 14rem;">
-            <div class="card-body">
+    <div class="pl-3 ">
+        <div class="card pl-3 pt-3 mb-3 text-light" style="width: 14rem ;">
+            <div class="card-body ">
                 <h5>${currDate}</h5>
                 <p>${iconURL}</p>
                 <p>Temp: ${cityInfo.temp} °F</p>
@@ -100,3 +81,61 @@ function futureCondition(lat, lon) {
     }
   });
 }
+
+$("#searchBtn").on("click", function (e) {
+  e.preventDefault();
+
+  var city = $("#enterCity").val().trim();
+  if (city) {
+    currentWeather(city);
+  }
+  if (!searchList.includes(city)) {
+    searchList.push(city);
+    var searchedCity = $(`
+            <li class="list-group-item">${city}</li>
+            `);
+    $("#searchHistory").append(searchedCity);
+  }
+  localStorage.setItem("city", JSON.stringify(searchList));
+  console.log(searchList);
+});
+
+$(document).on("click", ".list-group-item", function () {
+  var listCity = $(this).text();
+  currentWeather(listCity);
+});
+
+//last searched city forecast
+$(document).ready(function () {
+  var searchHistoryArr = JSON.parse(localStorage.getItem("city"));
+
+  if (searchHistoryArr !== null) {
+    var lastSearchedIndex = searchHistoryArr.length - 1;
+    var lastSearchedCity = searchHistoryArr[lastSearchedIndex];
+    currentWeather(lastSearchedCity);
+    console.log(`Last searched city: ${lastSearchedCity}`);
+  }
+});
+
+// fetch(apiUrl)
+//   .then((response) => {
+//     return response.json();
+//   })
+//   .then((data) => {
+//     // $("#today").text(` ${curDate}`);
+//     // $("#city").text(data.city.name);
+//     // $("#date").text(curDate);
+//     // $("#temperature").text(`${parseInt(data.list[0].main.temp)} ºC`);
+//     // $("#humidity").text(`${data.list[0].main.humidity}%`);
+//     // $("#wind-speed").text(`${data.list[0].wind.speed} mph`);
+//     console.log(data);
+//   });
+
+// function displayWeather(data) {
+//   $("#today").text(` ${curDate}`);
+//   $("#city").text(data.city.name);
+//   $("#date").text(curDate);
+//   $("#temperature").text(`${parseInt(data.list[0].main.temp)} ºC`);
+//   $("#humidity").text(`${data.list[0].main.humidity}%`);
+//   $("#wind-speed").text(`${data.list[0].wind.speed} mph`);
+// }
