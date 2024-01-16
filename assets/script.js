@@ -96,7 +96,7 @@ $("#searchBtn").on("click", function (e) {
 
     $("#enterCity").val(""); // clear the input field after
   } else {
-    $("#enterCity").val("Please enter a valid city name");
+    $("#enterCity").val("");
   }
 });
 
