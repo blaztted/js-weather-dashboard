@@ -52,7 +52,7 @@ function futureWeather(lat, lon) {
     console.log(data);
     $("#fiveDay").empty();
 
-    for (let i = 1; i < 6; i++) {
+    for (let i = 0; i < data.list.length; i += 8) {
       var cityInfo = {
         date: data.list[i].dt_txt,
         icon: data.list[i].weather[0].icon,
@@ -60,13 +60,13 @@ function futureWeather(lat, lon) {
         humidity: data.list[i].main.humidity,
       };
 
-      var currDate = dayjs(cityInfo.date).format("MM/DD/YYYY");
+      var currDate = dayjs(cityInfo.date).format("DD/MM/YYYY");
 
       var iconURL = `<img src="https://openweathermap.org/img/w/${cityInfo.icon}.png" alt="${data.list[i].weather[0].main}" />`;
 
       var futureCard = $(`
-    <div class="pl-3 ">
-        <div class="card pl-3 pt-3 mb-3 text-light" style="width: 14rem ;">
+    <div class="pl-3">
+        <div class="card pl-3 pt-3 mb-3 text-light" style="width: 12rem ;">
             <div class="card-body ">
                 <h5>${currDate}</h5>
                 <p>${iconURL}</p>
@@ -98,6 +98,8 @@ $("#searchBtn").on("click", function (e) {
   }
   localStorage.setItem("city", JSON.stringify(searchList));
   console.log(searchList);
+
+  $("#enterCity").val(""); // clear the input field after
 });
 
 $(document).on("click", ".list-group-item", function () {
