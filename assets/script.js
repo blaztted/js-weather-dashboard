@@ -1,7 +1,3 @@
-// const lat = 38.8075622;
-// const lon = -9.1954432;
-// const city = "London";
-
 var API_KEY = "9270b2bf465fdbbaeec9cec7447a23bd";
 
 var now = dayjs();
@@ -41,7 +37,6 @@ function currentWeather(city) {
     futureWeather(lat, lon);
   });
 }
-currentWeather();
 
 function futureWeather(lat, lon) {
   var futureUrl = `https://api.openweathermap.org/data/2.5/forecast?lat=${lat}&lon=${lon}&appid=${API_KEY}`;
@@ -88,18 +83,21 @@ $("#searchBtn").on("click", function (e) {
   var city = $("#enterCity").val().trim();
   if (city) {
     currentWeather(city);
-  }
-  if (!searchList.includes(city)) {
-    searchList.push(city);
-    var searchedCity = $(`
-            <li class="list-group-item">${city}</li>
-            `);
-    $("#searchHistory").append(searchedCity);
-  }
-  localStorage.setItem("city", JSON.stringify(searchList));
-  console.log(searchList);
 
-  $("#enterCity").val(""); // clear the input field after
+    if (!searchList.includes(city)) {
+      searchList.push(city);
+      var searchedCity = $(`
+              <li class="list-group-item">${city}</li>
+              `);
+      $("#searchHistory").append(searchedCity);
+    }
+    localStorage.setItem("city", JSON.stringify(searchList));
+    console.log(searchList);
+
+    $("#enterCity").val(""); // clear the input field after
+  } else {
+    $("#enterCity").val("Please enter a valid city name");
+  }
 });
 
 $(document).on("click", ".list-group-item", function () {
@@ -118,26 +116,3 @@ $(document).ready(function () {
     console.log(`Last searched city: ${lastSearchedCity}`);
   }
 });
-
-// fetch(apiUrl)
-//   .then((response) => {
-//     return response.json();
-//   })
-//   .then((data) => {
-//     // $("#today").text(` ${curDate}`);
-//     // $("#city").text(data.city.name);
-//     // $("#date").text(curDate);
-//     // $("#temperature").text(`${parseInt(data.list[0].main.temp)} ºC`);
-//     // $("#humidity").text(`${data.list[0].main.humidity}%`);
-//     // $("#wind-speed").text(`${data.list[0].wind.speed} mph`);
-//     console.log(data);
-//   });
-
-// function displayWeather(data) {
-//   $("#today").text(` ${curDate}`);
-//   $("#city").text(data.city.name);
-//   $("#date").text(curDate);
-//   $("#temperature").text(`${parseInt(data.list[0].main.temp)} ºC`);
-//   $("#humidity").text(`${data.list[0].main.humidity}%`);
-//   $("#wind-speed").text(`${data.list[0].wind.speed} mph`);
-// }
