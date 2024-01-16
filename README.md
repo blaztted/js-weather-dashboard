@@ -7,17 +7,17 @@ This repository is where I code my [Weather Dashboard](https://github.com/blaztt
 ## Deployed Site
 
 <p align="center">
-  <img alt="frontpage and console print" src="./assets/images/screenshot.png" width="1000" height="700">
+  <img alt="frontpage and console print" src="./assets/images/screenshot.png" width="900" height="500">
 
-You can find the project deployed [here](https://blaztted.github.io/work-day-scheduler/).
+You can find the project deployed [here](https://blaztted.github.io/js-weather-dashboard/).
 
 </p>
 
 ## Links
 
-https://github.com/blaztted/work-day-scheduler
+https://github.com/blaztted/js-weather-dashboard
 
-https://blaztted.github.io/work-day-scheduler/
+https://blaztted.github.io/js-weather-dashboard/
 
 ## License
 
